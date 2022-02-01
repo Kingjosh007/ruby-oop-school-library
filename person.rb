@@ -1,3 +1,4 @@
+# rubocop: disable Style/OptionalBooleanParameter
 require_relative 'corrector'
 
 class Person
@@ -9,7 +10,7 @@ class Person
     @age = age
     @name = name
     @parent_permission = parent_permission
-    @corrector = Corrector.new()
+    @corrector = Corrector.new
   end
 
   def can_use_services?
@@ -26,3 +27,4 @@ class Person
     @age >= 18
   end
 end
+# rubocop: enable Style/OptionalBooleanParameter

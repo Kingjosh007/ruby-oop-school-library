@@ -1,3 +1,4 @@
+# rubocop: disable Style/OptionalBooleanParameter
 require_relative 'person'
 
 class Student < Person
@@ -12,3 +13,4 @@ class Student < Person
     '¯\(ツ)/¯'
   end
 end
+# rubocop: enable Style/OptionalBooleanParameter
