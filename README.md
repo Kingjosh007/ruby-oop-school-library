@@ -8,8 +8,8 @@
 
 The project is divided in seven (7) milestones, the current one is bolded.
 
-**Milestone 1: Add Person, Student, and Teacher classes** 
-Milestone 2: Decorate a class
+Milestone 1: Add Person, Student, and Teacher classes
+**Milestone 2: Decorate a class**
 Milestone 3: Set up associations
 Milestone 4: Add basic UI (console application)
 Milestone 5: Refactor the code
