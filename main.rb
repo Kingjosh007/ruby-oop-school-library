@@ -2,6 +2,9 @@ require_relative 'person'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'corrector'
+require_relative 'classroom'
+require_relative 'book'
+require_relative 'rental'
 
 b = Student.new(24, 'Classroom 1', 'King')
 c = Teacher.new(38, 'Biology', 'Mr. Smith')
