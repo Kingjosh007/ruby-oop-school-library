@@ -24,10 +24,10 @@ class Person
   end
 
   def rent_book(date, book)
-    bookToRent = Rental.new(date, book, self)
-    book.rentals << bookToRent unless book.rentals.include?(bookToRent)
-    bookToAdd = Rental.new(date, book, self)
-    @rentals << bookToAdd unless @rentals.include?(bookToAdd)
+    book_to_rent = Rental.new(date, book, self)
+    book.rentals << book_to_rent unless book.rentals.include?(book_to_rent)
+    book_to_add = Rental.new(date, book, self)
+    @rentals << book_to_add unless @rentals.include?(book_to_add)
   end
 
   private
