@@ -1,4 +1,5 @@
 # rubocop: disable Style/OptionalBooleanParameter
+require 'date'
 require_relative 'corrector'
 require_relative 'rental'
 
@@ -23,7 +24,7 @@ class Person
     @name = @corrector.correct_name(@name)
   end
 
-  def rent_book(date, book)
+  def rent_book(book, date = Time.now.strftime('%d/%m/%Y %H:%M'))
     book_to_rent = Rental.new(date, book, self)
     book.rentals << book_to_rent unless book.rentals.include?(book_to_rent)
     book_to_add = Rental.new(date, book, self)
