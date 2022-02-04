@@ -20,15 +20,15 @@ p pers
 pers.validate_name
 p pers
 
-p b
-b.rent_book(book1)
-p b
-p book1
+# p b
+# b.rent_book(book1)
+# p b
+# p book1
 
-p c
-c.rent_book(book2)
-p book2
-p c
-c.rent_book(book1)
-p c
-p book1
+# p c
+# c.rent_book(book2)
+# p book2
+# p c
+# c.rent_book(book1)
+# p c
+# p book1
