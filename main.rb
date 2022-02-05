@@ -16,15 +16,15 @@ class App
     end
   
     def run
-      puts "\n\n\n\t\t ---------------------------".bold.on_magenta
-      puts "\t\t|  OOP SCHOOL LIBRARY APP  |".bold.on_magenta
-      puts "\t\t ---------------------------".bold.on_magenta
       sleep 0.8
       menu
     end
   
     def menu
-      puts
+      puts `clear`
+      puts "\n\n\n\t\t ---------------------------".bold.on_magenta
+      puts "\t\t|  OOP SCHOOL LIBRARY APP  |".bold.on_magenta
+      puts "\t\t ---------------------------".bold.on_magenta
       puts "\t____________________________________________________".magenta
       puts "\n\t Please choose an option by entering a number"
       puts "\n\t\t" + " 1 ".brown.on_magenta + "- List all books\n"
@@ -62,6 +62,7 @@ class App
     end
   
     def list_all_books
+      puts `clear`
       puts 'There are no books yet! Kindly add books.' if @books.empty?
   
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
@@ -72,7 +73,8 @@ class App
     def list_all_people
       puts 'There are no people yet! Kindly add a student or teacher.' if @people.empty?
       @people.map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
-      sleep 0.75
+      puts "\n\n\n Press any key to go back to the main menu"
+      key = gets.chomp
       menu
     end
   
@@ -97,18 +99,18 @@ class App
       print 'Name: '
       name = gets.chomp
   
+      parent_permission = false
       print 'Has parent permission? [Y/N]: '
       perm = gets.chomp.downcase
-      if(perm == 'y')
+      if perm == 'y'
         parent_permission = true
-      else
-        parent_permission = false
+      end
   
       student = Student.new(age, @class, name, parent_permission)
       @people << student
   
       puts 'Student created successfully'
-      sleep 0.75
+      sleep 2
       menu
     end
   
