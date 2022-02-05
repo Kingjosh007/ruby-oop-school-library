@@ -19,6 +19,17 @@ The project is divided in seven (7) milestones, the current one is **bolded**.
 
 ## Screenshots
 ![Main menu](screenshots/main-menu.PNG)
+![List of people](screenshots/list-of-people.PNG)
+
+
+## Getting started
+
+1. Make sure you have Ruby installed in your system. You can install it [here](https://www.ruby-lang.org/en/documentation/installation/).
+
+2. Clone this repository by running `git clone https://github.com/Kingjosh007/ruby-oop-school-library` in your command line.
+
+Navigate to the repository by running `cd ruby-oop-school-library`.
+
 
 ## Built With
 
