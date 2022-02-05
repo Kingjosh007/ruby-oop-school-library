@@ -17,6 +17,9 @@ The project is divided in seven (7) milestones, the current one is **bolded**.
 - Milestone 7: Unit tests
 
 
+## Screenshots
+![Main menu](screenshots/main-menu.PNG)
+
 ## Built With
 
 ![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)
