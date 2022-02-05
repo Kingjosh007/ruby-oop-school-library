@@ -28,7 +28,9 @@ The project is divided in seven (7) milestones, the current one is **bolded**.
 
 2. Clone this repository by running `git clone https://github.com/Kingjosh007/ruby-oop-school-library` in your command line.
 
-Navigate to the repository by running `cd ruby-oop-school-library`.
+3. Navigate to the repository by running `cd ruby-oop-school-library`.
+
+4. Run `ruby main.rb` in your command line.
 
 
 ## Built With
