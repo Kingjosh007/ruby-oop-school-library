@@ -63,10 +63,13 @@ class App
   
     def list_all_books
       puts `clear`
-      puts 'There are no books yet! Kindly add books.' if @books.empty?
-  
-      @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
-      sleep 0.75
+      puts "\n\n\n\t\t     ALL AVAILABLE BOOKS \n\n\n".magenta.on_black.bold
+      puts "\n\t\t" + " There are no books yet! Please add some books. ".on_red if @books.empty?
+
+      @books.each { |book| puts "\n\t\tTitle:".bold.underline.magenta + "  #{book.title.italic}" + "   " + "Author:".bold.underline.magenta + " #{book.author}" + "#{book.author}" }
+      
+      puts "\n\n\n\t\t Press any key to go back to the main menu"
+      key = gets.chomp
       menu
     end
   
@@ -134,13 +137,11 @@ class App
   
     def create_a_book
       puts `clear`
-      puts "\n\n\n\t\t  BOOK CREATION \n\n"
-      print "\t\t" + " Title: ".black.on_magenta
-      print "  "
+      puts "\n\n\n\t\t  BOOK CREATION \n\n".magenta
+      print "\t\t" + " Title: ".black.on_magenta + "   "
       title = gets.chomp
   
-      print "\n\t\t" + " Author: ".black.on_magenta
-      print "  "
+      print "\n\t\t" + " Author: ".black.on_magenta + "   "
       author = gets.chomp
   
       book = Book.new(title, author)
