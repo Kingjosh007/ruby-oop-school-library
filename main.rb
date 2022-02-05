@@ -133,17 +133,24 @@ class App
     end
   
     def create_a_book
-      puts "\t\t" + " Title: ".black.on_magenta + "\n\t\t  "
+      puts `clear`
+      puts "\n\n\n\t\t  BOOK CREATION \n\n"
+      print "\t\t" + " Title: ".black.on_magenta
+      print "  "
       title = gets.chomp
   
-      puts "\t\t" + " Author: ".black.on_magenta + "\n\t\t  "
+      print "\n\t\t" + " Author: ".black.on_magenta
+      print "  "
       author = gets.chomp
   
       book = Book.new(title, author)
       @books << book
   
-      puts 'Book added successfully'
-      sleep 2
+      puts "\n\n\t\t" + " Book added successfully ".bold.on_green
+
+      puts "\n\n\n\t\t Press any key to go back to the main menu"
+      print "\t\t  "
+      key = gets.chomp
       menu
     end
   end
@@ -173,19 +180,20 @@ class App
   end
   
   def list_rentals_by_person_id
-    print 'ID of person: '
+    puts "\t\t Please enter the ID of the person: \t\t  "
     id = gets.chomp.to_i
 
     if @rentals.empty?
-      puts 'There are no rentals yet for this person'
+      puts "\n\n There are no rentals yet for this person"
     else
       puts 'Rentals:'
       @rentals.each do |rental|
-        puts "\n\n" + "Date: ".black.on_magenta + "#{rental.date}" + "\n" + " Book: ".black.on_magenta + "'#{rental.book.title}'" + "\n" + " Author: ".black.on_magenta + " #{rental.book.author}" if rental.person.id == id
-        end
-        puts "\n\n\n Press any key to go back to the main menu"
+        puts "\n\n\t\t" + "Date: ".black.on_magenta + "#{rental.date}" + "\n" + " Book: ".black.on_magenta + "'#{rental.book.title}'" + "\n" + " Author: ".black.on_magenta + " #{rental.book.author}" if rental.person.id == id
+      end
+      puts "\n\n\n\t\t Press any key to go back to the main menu"
       key = gets.chomp
-    menu
+      menu
+    end
   end
   
   def main
