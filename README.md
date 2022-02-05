@@ -6,15 +6,31 @@
 
 > In this project, I practice OOP (Object Oriented Programming) concepts in Ruby by creating a school library application. 
 
-The project is divided in seven (7) milestones, the current one is bolded.
+The project is divided in seven (7) milestones, the current one is **bolded**.
 
-Milestone 1: Add Person, Student, and Teacher classes
-Milestone 2: Decorate a class
-**Milestone 3: Set up associations**
-Milestone 4: Add basic UI (console application)
-Milestone 5: Refactor the code
-Milestone 6: Preserve data
-Milestone 7: Unit tests
+- Milestone 1: Add Person, Student, and Teacher classes
+- Milestone 2: Decorate a class
+- Milestone 3: Set up associations
+- **Milestone 4: Add basic UI (console application)**
+- Milestone 5: Refactor the code
+- Milestone 6: Preserve data
+- Milestone 7: Unit tests
+
+
+## Screenshots
+![Main menu](screenshots/main-menu.PNG)
+![List of people](screenshots/list-of-people.PNG)
+
+
+## Getting started
+
+1. Make sure you have Ruby installed in your system. You can install it [here](https://www.ruby-lang.org/en/documentation/installation/).
+
+2. Clone this repository by running `git clone https://github.com/Kingjosh007/ruby-oop-school-library` in your command line.
+
+3. Navigate to the repository by running `cd ruby-oop-school-library`.
+
+4. Run `ruby main.rb` in your command line.
 
 
 ## Built With
