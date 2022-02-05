@@ -4,6 +4,7 @@ require_relative 'teacher'
 require_relative 'classroom'
 require_relative 'book'
 require_relative 'rental'
+require_relative 'colors_utils'
 
 # rubocop:disable Metrics
 
@@ -15,23 +16,24 @@ class App
     end
   
     def run
-      puts "\n\n\n\t\t ---------------------------"
-      puts "\t\t|  OOP SCHOOL LIBRARY APP  |"
-      puts "\t\t ---------------------------"
+      puts "\n\n\n\t\t ---------------------------".bold.on_magenta
+      puts "\t\t|  OOP SCHOOL LIBRARY APP  |".bold.on_magenta
+      puts "\t\t ---------------------------".bold.on_magenta
       sleep 0.8
       menu
     end
   
     def menu
       puts
+      puts "\t____________________________________________________".magenta
       puts "\n\t Please choose an option by entering a number"
-      puts "\n\t\t 1 - List all books"
-      puts "\n\t\t 2 - List all people"
-      puts "\n\t\t 3 - Create a person\n"
-      puts "\n\t\t 4 - Create a book\n"
-      puts "\n\t\t 5 - Create a rental\n"
-      puts "\n\t\t 6 - List all rentals for a given person id\n"
-      puts "\n\t\t 7 - Exit\n\n"
+      puts "\n\t\t" + " 1 ".brown.on_magenta + "- List all books\n"
+      puts "\n\t\t" + " 2 ".brown.on_magenta + "- List all people\n"
+      puts "\n\t\t" + " 3 ".brown.on_magenta + "- Create a person\n"
+      puts "\n\t\t" + " 4 ".brown.on_magenta + "- Create a book\n"
+      puts "\n\t\t" + " 5 ".brown.on_magenta + "- Create a rental\n"
+      puts "\n\t\t" + " 6 ".brown.on_magenta + "- List all rentals for a given person id\n"
+      puts "\n\t\t" + " 7 ".brown.on_magenta + "- " + " Exit".bold.on_red + "\n\t____________________________________________________".magenta + "\n\n "
       print "\t\t  "
       option = gets.chomp.to_i
   
@@ -96,7 +98,11 @@ class App
       name = gets.chomp
   
       print 'Has parent permission? [Y/N]: '
-      parent_permission = gets.chomp.downcase
+      perm = gets.chomp.downcase
+      if(perm == 'y')
+        parent_permission = true
+      else
+        parent_permission = false
   
       student = Student.new(age, @class, name, parent_permission)
       @people << student
