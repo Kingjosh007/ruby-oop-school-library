@@ -1,5 +1,6 @@
 # rubocop: disable Style/OptionalBooleanParameter
 require_relative 'person'
+require_relative 'colors_utils'
 
 class Student < Person
   attr_accessor :classroom
@@ -12,5 +13,10 @@ class Student < Person
   def play_hooky
     '¯\(ツ)/¯'
   end
+
+  def display
+      puts "[Student]".bold.magenta + "  " + "Name:".underline.magenta + "   #{@name}" + "   " + "ID:".underline.magenta + " " + "#{@id}" + "  " + "Age:".underline.magenta + " #{@age}"
+  end
 end
+
 # rubocop: enable Style/OptionalBooleanParameter

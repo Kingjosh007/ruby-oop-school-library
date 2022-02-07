@@ -1,4 +1,5 @@
 require_relative 'person'
+require_relative 'colors_utils'
 
 class Teacher < Person
   attr_accessor :specialization
@@ -11,4 +12,9 @@ class Teacher < Person
   def can_use_services?
     true
   end
+
+  def display
+    puts "[Teacher]".bold.green + "  " + "Name:".underline.green + "   #{@name}" + "   " + "ID:".underline.green + " " + "#{@id}" + "  " + "Age:".underline.green + " #{@age}" 
+  end
+
 end

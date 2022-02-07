@@ -68,25 +68,11 @@ class App
   end
 
   def display_person(person)
-    case "#{person.class}"
-    when 'Student'
-      puts "[#{person.class}]".bold.magenta + "  " + "Name:".underline.magenta + "   #{person.name}" + "   " + "ID:".underline.magenta + " " + "#{person.id}" + "  " + "Age:".underline.magenta + "#{person.age}"
-    when 'Teacher'
-      puts "[#{person.class}]".bold.green + "  " + "Name:".underline.green + "   #{person.name}" + "   " + "ID:".underline.green + " " + "#{person.id}" + "  " + "Age:".underline.green + "#{person.age}"
-    else
-      puts "[Person]"
-    end
+    
   end
 
   def list_all_people
-    puts `clear`
-    puts "\n\n\n\t\t     ALL REGISTERED PEOPLE \n\n\n".magenta.on_black.bold
-    puts "\n\t\t" + " There are no people yet! Please add a student or teacher.".on_red if @people.empty?
-
-    @people.map { |person| puts display_person(person) }
-    puts "\n\n\n Press any key to go back to the main menu"
-    gets.chomp
-    menu
+   
   end
 
   def create_a_person
@@ -189,19 +175,7 @@ def create_a_rental
 end
 
 def list_rentals_by_person_id
-  puts "\t\t Please enter the ID of the person: \t\t  "
-  id = gets.chomp.to_i
-
-  if @rentals.empty?
-    puts "\n\n There are no rentals yet for this person"
-  else
-    puts 'Rentals:'
-    @rentals.each do |rental|
-      puts "\n\n\t\t" + "Date: ".black.on_magenta + "#{rental.date}" + "\n" + " Book: ".black.on_magenta + "'#{rental.book.title}'" + "\n" + " Author: ".black.on_magenta + " #{rental.book.author}" if rental.person.id == id
-    end
-    puts "\n\n\n\t\t Press any key to go back to the main menu"
-    gets.chomp
-    menu
+  
   end
 end
 

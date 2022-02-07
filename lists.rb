@@ -4,14 +4,14 @@ require_relative 'rental'
 require_relative 'colors_utils'
 
 class Listing
-  def self.list(option, id = 0)
+  def self.list(option)
     case option
     when 'Book'
       BookListing.list
     when 'Person'
       PersonListing.list
     when 'Rentals'
-      RentalListing.list(id)
+      RentalListing.list
     else
       puts "Nothing to list"
     end
@@ -39,9 +39,25 @@ class PersonListing < Listing
     puts "\n\n\n\t\t     ALL REGISTERED PEOPLE \n\n\n".magenta.on_black.bold
     puts "\n\t\t" + " There are no people yet! Please add a student or teacher.".on_red if @people.empty?
 
-    @people.map { |person| puts display_person(person) }
+    @people.map { |person| puts person.display }
     puts "\n\n\n Press any key to go back to the main menu"
     gets.chomp
     end
 end
 
+class RentalListing < Listing
+    def self.list
+        puts "\t\t Please enter the ID of the person: \t\t  "
+  id = gets.chomp.to_i
+
+  if Rental.rentals.empty?
+    puts "\n\n There are no rentals yet for this person"
+  else
+    puts 'Rentals:'
+    Rental.rentals.each do |rental|
+      puts "\n\n\t\t" + "Date: ".black.on_magenta + "#{rental.date}" + "\n" + " Book: ".black.on_magenta + "'#{rental.book.title}'" + "\n" + " Author: ".black.on_magenta + " #{rental.book.author}" if rental.person.id == id
+    end
+    puts "\n\n\n\t\t Press any key to go back to the main menu"
+    gets.chomp
+    end
+end
