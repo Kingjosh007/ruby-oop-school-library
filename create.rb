@@ -1,6 +1,9 @@
 require_relative 'book'
 require_relative 'person'
+require_relative 'student'
+require_relative 'teacher'
 require_relative 'rental'
+require_relative 'classroom'
 require_relative 'colors_utils'
 
 class Creator
@@ -40,23 +43,8 @@ class BookCreator
 end
 
 class PersonCreator
-  def self.create
-    print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
-    option = gets.chomp.to_i
 
-    case option
-    when 1
-      create_a_student
-    when 2
-      create_a_teacher
-    else
-      puts 'Invalid input. Kindly type 1 or 2'
-    end
-  end
-
-  private
-
-  def create_a_student
+  def self.create_a_student
     print 'Age: '
     age = gets.chomp.to_i
 
@@ -80,7 +68,7 @@ class PersonCreator
     sleep 2
   end
 
-  def create_a_teacher
+  def self.create_a_teacher
     print 'Age: '
     age = gets.chomp.to_i
 
@@ -96,13 +84,29 @@ class PersonCreator
     puts 'Teacher created successfully'
     sleep 2
   end
+
+  def self.create
+    print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
+    option = gets.chomp.to_i
+
+    case option
+    when 1
+      self.create_a_student
+    when 2
+      self.create_a_teacher
+    else
+      puts 'Invalid input. Kindly type 1 or 2'
+    end
+  end
 end
 
 class RentalCreator
   def self.create
     puts `clear`
     puts '\n\n\n Select a book from the following list by number'
-    Book.class_variable_get(:@@books).each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
+    Book.class_variable_get(:@@books).each_with_index { |book, index|
+      puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}"
+    }
 
     book_id = gets.chomp.to_i
 
@@ -116,7 +120,8 @@ class RentalCreator
     print 'Date: '
     date = gets.chomp.to_s
 
-    rental = Rental.new(date, Book.class_variable_get(:@@books)[book_id - 1], Person.class_variable_get(:@@people)[person_id - 1])
+    rental = Rental.new(date, Book.class_variable_get(:@@books)[book_id - 1],
+                        Person.class_variable_get(:@@people)[person_id - 1])
     Rental.class_variable_get(:@@rentals) << rental
 
     puts 'Rental created successfully'

@@ -38,6 +38,7 @@ class App
     case input
     when 1
       Listing.list('Books')
+      menu
     when 2
       Listing.list('People')
       menu

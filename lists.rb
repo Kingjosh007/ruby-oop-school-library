@@ -24,12 +24,12 @@ class BookListing < Listing
     puts "\n\n\n\t\t     ALL AVAILABLE BOOKS \n\n\n".magenta.on_black.bold
     puts "\n\t\t" + " There are no books yet! Please add some books. ".on_red if Book.class_variable_get(:@@books).empty?
 
-    Book.class_variable_get(:@@books).each do |book| 
+    Book.class_variable_get(:@@books).each do |book|
       puts "\n\t\tTitle:".bold.underline.magenta + "  #{book.title.italic}" + "   " + "Author:".bold.underline.magenta + " #{book.author}"
     end
     puts "\n\n\n\t\t Press any key to go back to the main menu"
     gets.chomp
-   end
+  end
 end
 
 class PersonListing < Listing
