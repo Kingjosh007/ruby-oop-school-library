@@ -1,5 +1,7 @@
 require_relative 'rental'
 
+# rubocop: disable Style/ClassVars
+
 class Book
   @@books = []
   attr_accessor :title, :author, :rentals
@@ -10,3 +12,5 @@ class Book
     @rentals = rentals
   end
 end
+
+# rubocop: enable Style/ClassVars

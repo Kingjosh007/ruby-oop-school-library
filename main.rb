@@ -2,7 +2,6 @@ require_relative 'create'
 require_relative 'lists'
 require_relative 'colors_utils'
 
-# rubocop: disable Layout/LineLength
 # rubocop: disable Style
 # rubocop: disable Metrics
 
@@ -68,5 +67,4 @@ def main
 end
 # rubocop: enable Metrics
 # rubocop: enable Style
-# rubocop: enable Layout/LineLength
 main

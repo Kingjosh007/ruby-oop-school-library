@@ -6,6 +6,8 @@ require_relative 'rental'
 require_relative 'classroom'
 require_relative 'colors_utils'
 
+# rubocop: disable Style
+
 class Creator
   def self.create(option)
     case option
@@ -43,7 +45,6 @@ class BookCreator
 end
 
 class PersonCreator
-
   def self.create_a_student
     print 'Age: '
     age = gets.chomp.to_i
@@ -128,3 +129,5 @@ class RentalCreator
     sleep 2
   end
 end
+
+# rubocop: enable Style

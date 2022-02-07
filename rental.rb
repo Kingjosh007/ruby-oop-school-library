@@ -1,3 +1,5 @@
+# rubocop: disable Layout/LineLength
+# rubocop: disable Style
 class Rental
   @@rentals = []
   attr_accessor :date, :book, :person
@@ -12,3 +14,6 @@ class Rental
     "\n\n\t\t" + "Date: ".black.on_magenta + "#{@date}" + "\n" + " Book: ".black.on_magenta + "'#{@book.title}'" + "\n" + " Author: ".black.on_magenta + " #{@book.author}"
   end
 end
+
+# rubocop: enable Layout/LineLength
+# rubocop: enable Style

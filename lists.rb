@@ -3,6 +3,9 @@ require_relative 'person'
 require_relative 'rental'
 require_relative 'colors_utils'
 
+# rubocop: disable Layout/LineLength
+# rubocop: disable Style
+
 class Listing
   def self.list(option)
     case option
@@ -61,3 +64,6 @@ class RentalListing < Listing
     gets.chomp
   end
 end
+
+# rubocop: enable Layout/LineLength
+# rubocop: enable Style

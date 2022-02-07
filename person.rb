@@ -1,4 +1,4 @@
-# rubocop: disable Style/OptionalBooleanParameter
+# rubocop: disable Style
 require 'date'
 require_relative 'corrector'
 require_relative 'rental'
@@ -43,4 +43,4 @@ class Person
   end
 end
 
-# rubocop: enable Style/OptionalBooleanParameter
+# rubocop: enable Style

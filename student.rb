@@ -1,4 +1,5 @@
-# rubocop: disable Style/OptionalBooleanParameter
+# rubocop: disable Layout/LineLength
+# rubocop: disable Style
 require_relative 'person'
 require_relative 'colors_utils'
 
@@ -19,4 +20,5 @@ class Student < Person
   end
 end
 
-# rubocop: enable Style/OptionalBooleanParameter
+# rubocop: enable Layout/LineLength
+# rubocop: enable Style
