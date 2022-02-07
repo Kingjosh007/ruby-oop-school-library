@@ -29,7 +29,7 @@ class BookCreator
     author = gets.chomp
 
     book = Book.new(title, author)
-    Book.books << book
+    Book.class_variable_get(:@@books) << book
 
     puts "\n\n\t\t" + " Book added successfully ".bold.on_green
 
@@ -74,7 +74,7 @@ class PersonCreator
     end
 
     student = Student.new(age, classroom, name, parent_permission)
-    Person.people << student
+    Person.class_variable_get(:@@people) << student
 
     puts 'Student created successfully'
     sleep 2
@@ -91,7 +91,7 @@ class PersonCreator
     specialization = gets.chomp
 
     teacher = Teacher.new(age, specialization, name)
-    Person.people << teacher
+    Person.class_variable_get(:@@people) << teacher
 
     puts 'Teacher created successfully'
     sleep 2
@@ -102,12 +102,12 @@ class RentalCreator
   def self.create
     puts `clear`
     puts '\n\n\n Select a book from the following list by number'
-    Book.books.each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
+    Book.class_variable_get(:@@books).each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
 
     book_id = gets.chomp.to_i
 
     puts 'Select a person from the following list by number (not id)'
-    Person.people.each_with_index do |person, index|
+    Person.class_variable_get(:@@people).each_with_index do |person, index|
       puts "#{index + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
 
@@ -116,8 +116,8 @@ class RentalCreator
     print 'Date: '
     date = gets.chomp.to_s
 
-    rental = Rental.new(date, Book.books[book_id - 1], Person.people[person_id - 1])
-    Rental.rentals << rental
+    rental = Rental.new(date, Book.class_variable_get(:@@books)[book_id - 1], Person.class_variable_get(:@@people)[person_id - 1])
+    Rental.class_variable_get(:@@rentals) << rental
 
     puts 'Rental created successfully'
     sleep 2
