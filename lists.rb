@@ -29,7 +29,19 @@ class BookListing < Listing
 
     puts "\n\n\n\t\t Press any key to go back to the main menu"
     gets.chomp
-    menu
 
     end
 end
+
+class PersonListing < Listing
+    def self.list
+        puts `clear`
+    puts "\n\n\n\t\t     ALL REGISTERED PEOPLE \n\n\n".magenta.on_black.bold
+    puts "\n\t\t" + " There are no people yet! Please add a student or teacher.".on_red if @people.empty?
+
+    @people.map { |person| puts display_person(person) }
+    puts "\n\n\n Press any key to go back to the main menu"
+    gets.chomp
+    end
+end
+
