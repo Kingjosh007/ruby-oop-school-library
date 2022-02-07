@@ -55,7 +55,7 @@ class RentalListing < Listing
   else
     puts 'Rentals:'
     Rental.rentals.each do |rental|
-      puts "\n\n\t\t" + "Date: ".black.on_magenta + "#{rental.date}" + "\n" + " Book: ".black.on_magenta + "'#{rental.book.title}'" + "\n" + " Author: ".black.on_magenta + " #{rental.book.author}" if rental.person.id == id
+      puts rental.display if rental.person.id == id
     end
     puts "\n\n\n\t\t Press any key to go back to the main menu"
     gets.chomp
