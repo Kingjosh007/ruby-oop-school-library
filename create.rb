@@ -63,6 +63,9 @@ class PersonCreator
         print 'Name: '
         name = gets.chomp
 
+        print 'Class: '
+        classroom = Classroom.new(gets.chomp)
+
         parent_permission = false
         print 'Has parent permission? [Y/N]: '
         perm = gets.chomp.downcase
@@ -70,7 +73,7 @@ class PersonCreator
             parent_permission = true
         end
 
-        student = Student.new(age, @class, name, parent_permission)
+        student = Student.new(age, classroom, name, parent_permission)
         Person.people << student
 
         puts 'Student created successfully'
@@ -95,27 +98,29 @@ class PersonCreator
     end
 end
     
-    class RentalCreator
+class RentalCreator
     def self.create
         puts `clear`
-        puts "\n\n\n\t\t  RENTAL CREATION \n\n".magenta
-        print "\t\t" + " Date: ".black.on_magenta + "   "
-        date = gets.chomp
-    
-        print "\n\t\t" + " Book: ".black.on_magenta + "   "
-        book = gets.chomp
-    
-        print "\n\t\t" + " Person: ".black.on_magenta + "   "
-        person = gets.chomp
-    
-        rental = Rental.new(date, book, person)
+        puts '\n\n\n Select a book from the following list by number'
+        Book.books.each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
+
+        book_id = gets.chomp.to_i
+
+        puts 'Select a person from the following list by number (not id)'
+        Person.people.each_with_index do |person, index|
+            puts "#{index + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        end
+
+        person_id = gets.chomp.to_i
+
+        print 'Date: '
+        date = gets.chomp.to_s
+
+        rental = Rental.new(date, Book.books[book_id - 1], Person.people[person_id - 1])
         Rental.rentals << rental
-    
-        puts "\n\n\t\t" + " Rental added successfully ".bold.on_green
-    
-        puts "\n\n\n\t\t Press any key to go back to the main menu"
-        print "\t\t  "
-        gets.chomp
+
+        puts 'Rental created successfully'
+        sleep 2
     end
 
     
