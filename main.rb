@@ -64,17 +64,7 @@ class App
   end
 
   def list_all_books
-    puts `clear`
-    puts "\n\n\n\t\t     ALL AVAILABLE BOOKS \n\n\n".magenta.on_black.bold
-    puts "\n\t\t" + " There are no books yet! Please add some books. ".on_red if @books.empty?
-
-    @books.each { |book|
-      puts "\n\t\tTitle:".bold.underline.magenta + "  #{book.title.italic}" + "   " + "Author:".bold.underline.magenta + " #{book.author}"
-    }
-
-    puts "\n\n\n\t\t Press any key to go back to the main menu"
-    gets.chomp
-    menu
+    
   end
 
   def display_person(person)
