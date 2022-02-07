@@ -4,6 +4,7 @@ require_relative 'corrector'
 require_relative 'rental'
 
 class Person
+  @@people = []
   attr_reader :id, :corrector
   attr_accessor :name, :age, :rentals
 
