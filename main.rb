@@ -1,9 +1,5 @@
-require_relative 'person'
-require_relative 'student'
-require_relative 'teacher'
-require_relative 'classroom'
-require_relative 'book'
-require_relative 'rental'
+require_relative 'create'
+require_relative 'lists'
 require_relative 'colors_utils'
 
 # rubocop: disable Layout/LineLength
@@ -11,16 +7,12 @@ require_relative 'colors_utils'
 # rubocop: disable Metrics
 
 class App
-  def initialize
-    @people = []
-    @books = []
-    @rentals = []
-  end
-
   def run
     sleep 0.8
     menu
   end
+
+  private
 
   def menu
     puts `clear`
@@ -35,7 +27,7 @@ class App
     puts "\n\t\t" + " 4 ".brown.on_magenta + "- Create a book\n"
     puts "\n\t\t" + " 5 ".brown.on_magenta + "- Create a rental\n"
     puts "\n\t\t" + " 6 ".brown.on_magenta + "- List all rentals for a given person id\n"
-    puts "\n\t\t" + " 7 ".brown.on_magenta + "- " + " Exit".bold.on_red + "\n\t____________________________________________________".magenta + "\n\n "
+    puts "\n\t\t" + " 7 ".brown.on_magenta + "- " + " Exit".bold.on_red + "\n\t" + "#{"_" * 53}".magenta + "\n\n "
     print "\t\t  "
     option = gets.chomp.to_i
 
@@ -45,137 +37,27 @@ class App
   def get_option(input)
     case input
     when 1
-      list_all_books
+      Listing.list('Books')
     when 2
-      list_all_people
+      Listing.list('People')
+      menu
     when 3
-      create_a_person
+      Creator.create('Person')
+      menu
     when 4
-      create_a_book
+      Creator.create('Book')
+      menu
     when 5
-      create_a_rental
+      Creator.create('Rental')
+      menu
     when 6
-      list_rentals_by_person_id
+      Listing.list('Rentals')
+      menu
     when 7
       puts 'Thank you for using this app!'
     else
       puts 'Please enter a number between 1 and 7'
     end
-  end
-
-  def list_all_books
-    
-  end
-
-  def display_person(person)
-    
-  end
-
-  def list_all_people
-   
-  end
-
-  def create_a_person
-    print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
-    option = gets.chomp.to_i
-
-    case option
-    when 1
-      create_a_student
-    when 2
-      create_a_teacher
-    else
-      puts 'Invalid input. Kindly type 1 or 2'
-    end
-  end
-
-  def create_a_student
-    print 'Age: '
-    age = gets.chomp.to_i
-
-    print 'Name: '
-    name = gets.chomp
-
-    parent_permission = false
-    print 'Has parent permission? [Y/N]: '
-    perm = gets.chomp.downcase
-    if perm == 'y'
-      parent_permission = true
-    end
-
-    student = Student.new(age, @class, name, parent_permission)
-    @people << student
-
-    puts 'Student created successfully'
-    sleep 2
-    menu
-  end
-
-  def create_a_teacher
-    print 'Age: '
-    age = gets.chomp.to_i
-
-    print 'Name: '
-    name = gets.chomp
-
-    print 'Specialization: '
-    specialization = gets.chomp
-
-    teacher = Teacher.new(age, specialization, name)
-    @people << teacher
-
-    puts 'Teacher created successfully'
-    sleep 2
-    menu
-  end
-
-  def create_a_book
-    puts `clear`
-    puts "\n\n\n\t\t  BOOK CREATION \n\n".magenta
-    print "\t\t" + " Title: ".black.on_magenta + "   "
-    title = gets.chomp
-
-    print "\n\t\t" + " Author: ".black.on_magenta + "   "
-    author = gets.chomp
-
-    book = Book.new(title, author)
-    @books << book
-
-    puts "\n\n\t\t" + " Book added successfully ".bold.on_green
-
-    puts "\n\n\n\t\t Press any key to go back to the main menu"
-    print "\t\t  "
-    gets.chomp
-    menu
-  end
-end
-
-def create_a_rental
-  puts 'Select a book from the following list by number'
-  @books.each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
-
-  book_id = gets.chomp.to_i
-
-  puts 'Select a person from the following list by number (not id)'
-  @people.each_with_index do |person, index|
-    puts "#{index + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-  end
-
-  person_id = gets.chomp.to_i
-
-  print 'Date: '
-  date = gets.chomp.to_s
-
-  rental = Rental.new(date, @books[book_id - 1], @people[person_id - 1])
-  @rentals << rental
-
-  puts 'Rental created successfully'
-  sleep 2
-  menu
-end
-
-def list_rentals_by_person_id
-  
   end
 end
 

@@ -40,88 +40,86 @@ class BookCreator
 end
 
 class PersonCreator
-    def self.create
-        print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
-        option = gets.chomp.to_i
+  def self.create
+    print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
+    option = gets.chomp.to_i
 
-        case option
-        when 1
-          create_a_student
-        when 2
-          create_a_teacher
-        else
-          puts 'Invalid input. Kindly type 1 or 2'
-        end
+    case option
+    when 1
+      create_a_student
+    when 2
+      create_a_teacher
+    else
+      puts 'Invalid input. Kindly type 1 or 2'
+    end
+  end
+
+  private
+
+  def create_a_student
+    print 'Age: '
+    age = gets.chomp.to_i
+
+    print 'Name: '
+    name = gets.chomp
+
+    print 'Class: '
+    classroom = Classroom.new(gets.chomp)
+
+    parent_permission = false
+    print 'Has parent permission? [Y/N]: '
+    perm = gets.chomp.downcase
+    if perm == 'y'
+      parent_permission = true
     end
 
-    private 
+    student = Student.new(age, classroom, name, parent_permission)
+    Person.people << student
 
-    def create_a_student
-        print 'Age: '
-        age = gets.chomp.to_i
+    puts 'Student created successfully'
+    sleep 2
+  end
 
-        print 'Name: '
-        name = gets.chomp
+  def create_a_teacher
+    print 'Age: '
+    age = gets.chomp.to_i
 
-        print 'Class: '
-        classroom = Classroom.new(gets.chomp)
+    print 'Name: '
+    name = gets.chomp
 
-        parent_permission = false
-        print 'Has parent permission? [Y/N]: '
-        perm = gets.chomp.downcase
-        if perm == 'y'
-            parent_permission = true
-        end
+    print 'Specialization: '
+    specialization = gets.chomp
 
-        student = Student.new(age, classroom, name, parent_permission)
-        Person.people << student
+    teacher = Teacher.new(age, specialization, name)
+    Person.people << teacher
 
-        puts 'Student created successfully'
-        sleep 2
-    end
-
-    def create_a_teacher
-        print 'Age: '
-        age = gets.chomp.to_i
-    
-        print 'Name: '
-        name = gets.chomp
-    
-        print 'Specialization: '
-        specialization = gets.chomp
-    
-        teacher = Teacher.new(age, specialization, name)
-        Person.people << teacher
-    
-        puts 'Teacher created successfully'
-        sleep 2
-    end
+    puts 'Teacher created successfully'
+    sleep 2
+  end
 end
-    
+
 class RentalCreator
-    def self.create
-        puts `clear`
-        puts '\n\n\n Select a book from the following list by number'
-        Book.books.each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
+  def self.create
+    puts `clear`
+    puts '\n\n\n Select a book from the following list by number'
+    Book.books.each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
 
-        book_id = gets.chomp.to_i
+    book_id = gets.chomp.to_i
 
-        puts 'Select a person from the following list by number (not id)'
-        Person.people.each_with_index do |person, index|
-            puts "#{index + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-        end
-
-        person_id = gets.chomp.to_i
-
-        print 'Date: '
-        date = gets.chomp.to_s
-
-        rental = Rental.new(date, Book.books[book_id - 1], Person.people[person_id - 1])
-        Rental.rentals << rental
-
-        puts 'Rental created successfully'
-        sleep 2
+    puts 'Select a person from the following list by number (not id)'
+    Person.people.each_with_index do |person, index|
+      puts "#{index + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
 
-    
+    person_id = gets.chomp.to_i
+
+    print 'Date: '
+    date = gets.chomp.to_s
+
+    rental = Rental.new(date, Book.books[book_id - 1], Person.people[person_id - 1])
+    Rental.rentals << rental
+
+    puts 'Rental created successfully'
+    sleep 2
+  end
 end

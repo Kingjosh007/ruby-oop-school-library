@@ -15,7 +15,7 @@ class Student < Person
   end
 
   def display
-      puts "[Student]".bold.magenta + "  " + "Name:".underline.magenta + "   #{@name}" + "   " + "ID:".underline.magenta + " " + "#{@id}" + "  " + "Age:".underline.magenta + " #{@age}"
+    puts "[Student]".bold.magenta + "  " + "Name:".underline.magenta + "   #{@name}" + "   " + "ID:".underline.magenta + " " + "#{@id}" + "  " + "Age:".underline.magenta + " #{@age}"
   end
 end
 

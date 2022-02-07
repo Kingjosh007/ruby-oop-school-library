@@ -36,13 +36,11 @@ class Person
     puts 'This is a person'
   end
 
-
   private
 
   def of_age?
     @age >= 18
   end
 end
-
 
 # rubocop: enable Style/OptionalBooleanParameter
