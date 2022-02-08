@@ -10,7 +10,34 @@ class App
     menu
   end
 
-  def self.menu
+  def get_option(input)
+    case input
+    when 1
+      Listing.list('Books')
+      menu
+    when 2
+      Listing.list('People')
+      menu
+    when 3
+      Creator.create('Person')
+      menu
+    when 4
+      Creator.create('Book')
+      menu
+    when 5
+      Creator.create('Rental')
+      menu
+    when 6
+      Listing.list('Rentals')
+      menu
+    when 7
+      puts 'Thank you for using this app!'
+    else
+      puts 'Please enter a number between 1 and 7'
+    end
+  end
+
+  def menu
     puts `clear`
     puts "\n\n\n\t\t ---------------------------".bold.on_magenta
     puts "\t\t|  OOP SCHOOL LIBRARY APP  |".bold.on_magenta
@@ -28,27 +55,6 @@ class App
     option = gets.chomp.to_i
 
     get_option option
-  end
-
-  def get_option(input)
-    case input
-    when 1
-      Listing.list('Books')
-    when 2
-      Listing.list('People')
-    when 3
-      Creator.create('Person')
-    when 4
-      Creator.create('Book')
-    when 5
-      Creator.create('Rental')
-    when 6
-      Listing.list('Rentals')
-    when 7
-      puts 'Thank you for using this app!'
-    else
-      puts 'Please enter a number between 1 and 7'
-    end
   end
 end
 

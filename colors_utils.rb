@@ -84,6 +84,6 @@ class String
   end
 
   def bum
-    "#{self.bold.underline.magenta}"
+    to_s.bold.underline.magenta
   end
 end

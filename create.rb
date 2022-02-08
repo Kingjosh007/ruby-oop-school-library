@@ -5,20 +5,16 @@ require_relative 'teacher'
 require_relative 'rental'
 require_relative 'classroom'
 require_relative 'colors_utils'
-require_relative 'main'
 
 class Creator
   def self.create(option)
     case option
     when 'Book'
       BookCreator.create
-      App.menu
     when 'Person'
       PersonCreator.create
-      App.menu
     when 'Rental'
       RentalCreator.create
-      App.menu
     else
       puts 'Nothing to create'
     end

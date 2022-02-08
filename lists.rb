@@ -2,20 +2,16 @@ require_relative 'book'
 require_relative 'person'
 require_relative 'rental'
 require_relative 'colors_utils'
-require_relative 'main'
 
 class Listing
   def self.list(option)
     case option
     when 'Books'
       BookListing.list
-      App.menu
     when 'People'
       PersonListing.list
-      App.menu
     when 'Rentals'
       RentalListing.list
-      App.menu
     else
       puts 'Nothing to list'
     end
