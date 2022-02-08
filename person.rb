@@ -2,11 +2,13 @@
 require 'date'
 require_relative 'corrector'
 require_relative 'rental'
+require_relative 'data_related'
 
 class Person
+  @@people_filename = 'people.json'
   @@people = []
-  attr_reader :id, :corrector
-  attr_accessor :name, :age, :rentals
+  attr_reader :corrector
+  attr_accessor :id, :name, :age, :rentals, :people
 
   def initialize(age, name = 'Unknown', parent_permission = true, rentals = [])
     @id = rand(1..10_000)
@@ -34,6 +36,10 @@ class Person
 
   def display
     puts 'This is a person'
+  end
+
+  def self.overwrite_people(arr)
+    @@people = arr
   end
 
   private

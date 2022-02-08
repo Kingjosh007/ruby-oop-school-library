@@ -1,11 +1,33 @@
 require_relative 'create'
 require_relative 'lists'
 require_relative 'colors_utils'
+require_relative 'book'
+require_relative 'person'
+require_relative 'student'
+require_relative 'teacher'
+require_relative 'rental'
+require_relative 'data_related'
 
 # rubocop: disable Metrics
 
 class App
+  include DataLayer
+
   def run
+    # Load files
+
+    # Books
+    books_path = Book.class_variable_get(:@@books_filename)
+    Book.overwrite_books(read_data(books_path).map { |hash| hash_to_object(hash, 'Book') })
+
+    # People
+    people_path = Person.class_variable_get(:@@people_filename)
+    Person.overwrite_people(read_data(people_path).map { |hash| hash_to_object(hash, 'Person') })
+
+    # Rentals
+    rentals_path = Rental.class_variable_get(:@@rentals_filename)
+    Rental.overwrite_rentals(read_data(rentals_path).map { |hash| hash_to_object(hash, 'Rental') })
+
     sleep 0.8
     menu
   end
@@ -31,6 +53,19 @@ class App
       Listing.list('Rentals')
       menu
     when 7
+      rentals_path = Rental.class_variable_get(:@@rentals_filename)
+      rentals_data_before = Rental.class_variable_get(:@@rentals)
+      rentals_data_after = rentals_data_before.map { |obj| object_to_hash(obj) }
+      save_data(rentals_path, rentals_data_after)
+
+      books_path = Book.class_variable_get(:@@books_filename)
+      books_data = Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) }
+      save_data(books_path, books_data)
+
+      people_path = Person.class_variable_get(:@@people_filename)
+      people_data = Person.class_variable_get(:@@people).map { |obj| object_to_hash(obj) }
+      save_data(people_path, people_data)
+
       puts 'Thank you for using this app!'
     else
       puts 'Please enter a number between 1 and 7'
