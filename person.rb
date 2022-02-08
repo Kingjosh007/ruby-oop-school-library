@@ -5,8 +5,8 @@ require_relative 'rental'
 
 class Person
   @@people = []
-  attr_reader :id, :corrector
-  attr_accessor :name, :age, :rentals
+  attr_reader :corrector
+  attr_accessor :id, :name, :age, :rentals
 
   def initialize(age, name = 'Unknown', parent_permission = true, rentals = [])
     @id = rand(1..10_000)
