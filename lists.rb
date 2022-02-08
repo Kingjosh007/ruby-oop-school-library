@@ -3,7 +3,6 @@ require_relative 'person'
 require_relative 'rental'
 require_relative 'colors_utils'
 
-# rubocop: disable Layout/LineLength
 # rubocop: disable Style
 
 class Listing
@@ -25,10 +24,12 @@ class BookListing < Listing
   def self.list
     puts `clear`
     puts "\n\n\n\t\t     ALL AVAILABLE BOOKS \n\n\n".magenta.on_black.bold
-    puts "\n\t\t" + " There are no books yet! Please add some books. ".on_red if Book.class_variable_get(:@@books).empty?
+    if Book.class_variable_get(:@@books).empty?
+      puts "\n\t\t #{' There are no books yet! Please add some books. '.on_red}"
+    end
 
     Book.class_variable_get(:@@books).each do |book|
-      puts "\n\t\tTitle:".bold.underline.magenta + "  #{book.title.italic}" + "   " + "Author:".bold.underline.magenta + " #{book.author}"
+      puts "\n\t\t #{'Title:'.bum}  #{book.title.italic}   #{'Author:'.bum}  #{book.author}"
     end
     puts "\n\n\n\t\t Press any key to go back to the main menu"
     gets.chomp
@@ -39,8 +40,9 @@ class PersonListing < Listing
   def self.list
     puts `clear`
     puts "\n\n\n\t\t     ALL REGISTERED PEOPLE \n\n\n".magenta.on_black.bold
-    puts "\n\t\t" + " There are no people yet! Please add a student or teacher.".on_red if Person.class_variable_get(:@@people).empty?
-
+    if Person.class_variable_get(:@@people).empty?
+      puts "\n\t\t #{' There are no people yet! Please add a student or teacher. '.on_red}"
+    end
     Person.class_variable_get(:@@people).map { |person| puts person.display }
     puts "\n\n\n Press any key to go back to the main menu"
     gets.chomp
@@ -65,5 +67,4 @@ class RentalListing < Listing
   end
 end
 
-# rubocop: enable Layout/LineLength
 # rubocop: enable Style
