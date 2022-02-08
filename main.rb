@@ -24,6 +24,11 @@ class App
     people_path = Person.class_variable_get(:@@people_filename)
     Person.set_people(read_data(people_path).map { |hash| hash_to_object(hash, 'Person') })
 
+    #Rentals
+    rentals_path = Rental.class_variable_get(:@@rentals_filename)
+    binding.pry
+    Rental.set_rentals(read_data(rentals_path).map { |hash| hash_to_object(hash, 'Rental') })
+
 
     sleep 0.8
     menu
