@@ -4,9 +4,8 @@ require_relative 'data_related'
 # rubocop: disable Style/ClassVars
 
 class Book
-
   @@books = []
-  @@books_filename = 'books.json' 
+  @@books_filename = 'books.json'
 
   attr_accessor :title, :author, :rentals, :books
 
@@ -16,7 +15,7 @@ class Book
     @rentals = rentals
   end
 
-  def self.set_books(arr)
+  def self.overwrite_books(arr)
     @@books = arr
   end
 end

@@ -16,19 +16,17 @@ class App
   def run
     # Load files
 
-    #Books
+    # Books
     books_path = Book.class_variable_get(:@@books_filename)
-    Book.set_books(read_data(books_path).map { |hash| hash_to_object(hash, 'Book') })
+    Book.overwrite_books(read_data(books_path).map { |hash| hash_to_object(hash, 'Book') })
 
-    #People
+    # People
     people_path = Person.class_variable_get(:@@people_filename)
-    Person.set_people(read_data(people_path).map { |hash| hash_to_object(hash, 'Person') })
+    Person.overwrite_people(read_data(people_path).map { |hash| hash_to_object(hash, 'Person') })
 
-    #Rentals
+    # Rentals
     rentals_path = Rental.class_variable_get(:@@rentals_filename)
-    # binding.pry
-    Rental.set_rentals(read_data(rentals_path).map { |hash| hash_to_object(hash, 'Rental') })
-
+    Rental.overwrite_rentals(read_data(rentals_path).map { |hash| hash_to_object(hash, 'Rental') })
 
     sleep 0.8
     menu
@@ -59,7 +57,6 @@ class App
       rentals_data_before = Rental.class_variable_get(:@@rentals)
       rentals_data_after = rentals_data_before.map { |obj| object_to_hash(obj) }
       save_data(rentals_path, rentals_data_after)
-
 
       books_path = Book.class_variable_get(:@@books_filename)
       books_data = Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) }

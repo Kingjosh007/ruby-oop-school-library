@@ -38,7 +38,7 @@ class Person
     puts 'This is a person'
   end
 
-  def self.set_people(arr)
+  def self.overwrite_people(arr)
     @@people = arr
   end
 

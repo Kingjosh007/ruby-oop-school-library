@@ -17,7 +17,7 @@ class Rental
     "\n\n\t\t" + "Date: ".black.on_magenta + "#{@date}" + "\n" + " Book: ".black.on_magenta + "'#{@book.title}'" + "\n" + " Author: ".black.on_magenta + " #{@book.author}"
   end
 
-   def self.set_rentals(arr)
+  def self.overwrite_rentals(arr)
     @@rentals = arr
   end
 end
