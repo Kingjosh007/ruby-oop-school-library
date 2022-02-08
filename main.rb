@@ -1,6 +1,11 @@
 require_relative 'create'
 require_relative 'lists'
 require_relative 'colors_utils'
+require_relative 'book'
+require_relative 'person'
+require_relative 'student'
+require_relative 'teacher'
+require_relative 'rental'
 require_relative 'data_related'
 
 # rubocop: disable Metrics
@@ -10,8 +15,16 @@ class App
 
   def run
     # Load files
+
+    #Books
     booksPath = Book.class_variable_get(:@@books_filename)
     Book.set_books(read_data(booksPath).map { |hash| hash_to_object(hash, 'Book') })
+
+    #People
+    peoplePath = Person.class_variable_get(:@@people_filename)
+    Person.set_people(read_data(peoplePath).map { |hash| hash_to_object(hash, 'Person') })
+
+
     sleep 0.8
     menu
   end

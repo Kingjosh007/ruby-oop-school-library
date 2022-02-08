@@ -31,17 +31,21 @@ def hash_to_object(hash, classname)
   when 'Book'
     Book.new(hash['title'], hash['author'], hash['rentals'])
   when 'Rental'
-    Rental.new(hash['date'], hash['book'], hash['person'])
-  when 'Student'
-    stud = Student.new(hash['age'], hash_to_object(hash['classroom']), hash['name'], hash['parent_permission'])
-    stud.id = hash['id']
-    stud.rentals = hash_to_object(hash['rentals'])
-    stud
-  when 'Teacher'
-    teach = Teacher.new(hash['age'], hash['specialization'], hash['name'], hash['parent_permission'])
-    teach.id = hash['id']
-    teach.rentals = hash_to_object(hash['rentals'])
-    teach 
+    Rental.new(hash['date'], hash_to_object(hash['book'], 'Book'), hash_to_object(hash['person'], 'Person'))
+  when 'Person'
+    if hash['type'] == 'Student'
+      stud = Student.new(hash['age'], hash['classroom'], hash['name'], hash['parent_permission'])
+      stud.id = hash['id']
+      stud.rentals = hash['rentals'].map { |rental| hash_to_object(rental, 'Rental') }
+      stud
+    elsif hash['type'] == 'Teacher'
+      teach = Teacher.new(hash['age'], hash['specialization'], hash['name'])
+      teach.id = hash['id']
+      teach.rentals = hash['rentals'].map { |rental| hash_to_object(rental, 'Rental') }
+      teach 
+    end
+  when 'Classroom'
+    Classroom.new(hash['name'])
   end
 end
 
@@ -52,7 +56,9 @@ def save_data(filename, data)
 end
 
 def read_data(filename)
-    JSON.parse(File.read(filename)) || []
+  data = []
+  data = JSON.parse(File.read(filename)) if File.exist?(filename)
+  data
 end
 
 end
