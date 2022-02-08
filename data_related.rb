@@ -1,13 +1,11 @@
 require 'json'
-require 'book'
-require 'person'
-require 'student'
-require 'teacher'
-require 'rental'
+require_relative 'book'
+require_relative 'person'
+require_relative 'student'
+require_relative 'teacher'
+require_relative 'rental'
 
-books_filename = 'data/books.json'
-rentals_filename = 'data/rentals.json'
-people_filename = 'data/people.json'
+module DataLayer
 
 def object_to_hash(obj)
     obj.instance_variables.each_with_object({}) do |var, hash|
@@ -23,8 +21,7 @@ def object_to_hash(obj)
       end
       hash[key] = value
     end
-else
-
+end
 
 def hash_to_object(hash, classname)
   case classname
@@ -47,10 +44,11 @@ end
 
 def save_data(filename, data)
     File.open(filename, 'w') do |file|
-        file.puts JSON.parse(data)
+        file.puts data.to_json
     end
 end
 
 def read_data(filename)
     File.read(filename) || '[]'
+end
 end

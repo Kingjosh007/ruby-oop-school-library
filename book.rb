@@ -3,6 +3,7 @@ require_relative 'rental'
 # rubocop: disable Style/ClassVars
 
 class Book
+  @@books_filename = 'books.json' 
   @@books = []
   attr_accessor :title, :author, :rentals
 

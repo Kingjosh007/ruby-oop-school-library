@@ -1,10 +1,13 @@
 require_relative 'create'
 require_relative 'lists'
 require_relative 'colors_utils'
+require_relative 'data_related'
 
 # rubocop: disable Metrics
 
 class App
+  include DataLayer
+
   def run
     sleep 0.8
     menu
@@ -31,6 +34,7 @@ class App
       Listing.list('Rentals')
       menu
     when 7
+      save_data(Book.class_variable_get(:@@books_filename), Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) })
       puts 'Thank you for using this app!'
     else
       puts 'Please enter a number between 1 and 7'

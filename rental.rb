@@ -1,6 +1,7 @@
 # rubocop: disable Layout/LineLength
 # rubocop: disable Style
 class Rental
+  @@rentals_filename = 'data/rentals.json'
   @@rentals = []
   attr_accessor :date, :book, :person
 

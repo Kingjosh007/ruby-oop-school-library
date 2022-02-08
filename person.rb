@@ -4,6 +4,7 @@ require_relative 'corrector'
 require_relative 'rental'
 
 class Person
+  @@people_filename = 'data/people.json'
   @@people = []
   attr_reader :corrector
   attr_accessor :id, :name, :age, :rentals
