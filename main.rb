@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'create'
 require_relative 'lists'
 require_relative 'colors_utils'

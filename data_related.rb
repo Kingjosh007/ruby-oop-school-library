@@ -11,7 +11,7 @@ def object_to_hash(obj)
     obj.instance_variables.each_with_object({}) do |var, hash|
       key = var.to_s.delete('@')
       value = obj.instance_variable_get(var)
-      if ['Book', 'Rental', 'Person', 'Student', 'Teacher'].include?(value.class.name)
+      if ['Book', 'Rental', 'Person', 'Student', 'Teacher', 'Classroom', 'Corrector'].include?(value.class.name)
         value = object_to_hash(value)
       else
         hash[key] = value
