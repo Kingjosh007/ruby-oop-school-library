@@ -1,3 +1,4 @@
+require 'pry'
 require_relative 'create'
 require_relative 'lists'
 require_relative 'colors_utils'
@@ -9,6 +10,9 @@ class App
   include DataLayer
 
   def run
+    # Load files
+    booksPath = Book.class_variable_get(:@@books_filename)
+    Book.set_books(read_data(booksPath).map { |hash| hash_to_object(hash, 'Book') })
     sleep 0.8
     menu
   end
@@ -34,7 +38,10 @@ class App
       Listing.list('Rentals')
       menu
     when 7
-      save_data(Book.class_variable_get(:@@books_filename), Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) })
+      booksPath = Book.class_variable_get(:@@books_filename)
+      booksData = Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) }
+      save_data(booksPath, booksData)
+
       puts 'Thank you for using this app!'
     else
       puts 'Please enter a number between 1 and 7'

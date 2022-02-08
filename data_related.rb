@@ -11,15 +11,18 @@ def object_to_hash(obj)
     obj.instance_variables.each_with_object({}) do |var, hash|
       key = var.to_s.delete('@')
       value = obj.instance_variable_get(var)
-      if ['Book', 'Rental', 'Person', 'Student', 'Teacher'].include?(obj.class.name)
+      if ['Book', 'Rental', 'Person', 'Student', 'Teacher'].include?(value.class.name)
         value = object_to_hash(value)
+      else
+        hash[key] = value
       end
+
       if obj.class.name == 'Student'
         hash['type'] = 'Student'
       elsif obj.class.name == 'Teacher'
         hash['type'] = 'Teacher'
       end
-      hash[key] = value
+      hash
     end
 end
 
@@ -49,6 +52,7 @@ def save_data(filename, data)
 end
 
 def read_data(filename)
-    File.read(filename) || '[]'
+    JSON.parse(File.read(filename)) || []
 end
+
 end
