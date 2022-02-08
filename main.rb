@@ -42,6 +42,14 @@ class App
       booksData = Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) }
       save_data(booksPath, booksData)
 
+      peoplePath = Person.class_variable_get(:@@people_filename)
+      peopleData = Person.class_variable_get(:@@people).map { |obj| object_to_hash(obj) }
+      save_data(peoplePath, peopleData)
+
+      rentalsPath = Rental.class_variable_get(:@@rentals_filename)
+      rentalsData = Rental.class_variable_get(:@@rentals).map { |obj| object_to_hash(obj) }
+      save_data(rentalsPath, rentalsData)
+
       puts 'Thank you for using this app!'
     else
       puts 'Please enter a number between 1 and 7'

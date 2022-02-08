@@ -1,9 +1,11 @@
+require_relative 'data_related'
+
 # rubocop: disable Layout/LineLength
 # rubocop: disable Style
 class Rental
-  @@rentals_filename = 'data/rentals.json'
+  @@rentals_filename = 'rentals.json'
   @@rentals = []
-  attr_accessor :date, :book, :person
+  attr_accessor :date, :book, :person, :rentals
 
   def initialize(date, book, person)
     @date = date
@@ -13,6 +15,10 @@ class Rental
 
   def display
     "\n\n\t\t" + "Date: ".black.on_magenta + "#{@date}" + "\n" + " Book: ".black.on_magenta + "'#{@book.title}'" + "\n" + " Author: ".black.on_magenta + " #{@book.author}"
+  end
+
+   def self.set_rentals(arr)
+    @@rentals = arr
   end
 end
 
