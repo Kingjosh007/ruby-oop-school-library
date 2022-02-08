@@ -7,8 +7,6 @@ require_relative 'classroom'
 require_relative 'colors_utils'
 require_relative 'main'
 
-# rubocop: disable Style
-
 class Creator
   def self.create(option)
     case option
@@ -22,7 +20,7 @@ class Creator
       RentalCreator.create
       App.menu
     else
-      puts "Nothing to create"
+      puts 'Nothing to create'
     end
   end
 end
@@ -31,16 +29,16 @@ class BookCreator
   def self.create
     puts `clear`
     puts "\n\n\n\t\t  BOOK CREATION \n\n".magenta
-    print "\t\t" + " Title: ".black.on_magenta + "   "
+    print "\t\t #{' Title: '.black.on_magenta}  "
     title = gets.chomp
 
-    print "\n\t\t" + " Author: ".black.on_magenta + "   "
+    print "\n\t\t #{'Author: '.black.on_magenta}  "
     author = gets.chomp
 
     book = Book.new(title, author)
     Book.class_variable_get(:@@books) << book
 
-    puts "\n\n\t\t" + " Book added successfully ".bold.on_green
+    puts "\n\n\t\t #{' Book added successfully '.bold.on_green}"
 
     puts "\n\n\n\t\t Press any key to go back to the main menu"
     print "\t\t  "
@@ -62,9 +60,7 @@ class PersonCreator
     parent_permission = false
     print 'Has parent permission? [Y/N]: '
     perm = gets.chomp.downcase
-    if perm == 'y'
-      parent_permission = true
-    end
+    parent_permission = true unless perm == 'n'
 
     student = Student.new(age, classroom, name, parent_permission)
     Person.class_variable_get(:@@people) << student
@@ -96,9 +92,9 @@ class PersonCreator
 
     case option
     when 1
-      self.create_a_student
+      create_a_student
     when 2
-      self.create_a_teacher
+      create_a_teacher
     else
       puts 'Invalid input. Kindly type 1 or 2'
     end
@@ -109,9 +105,9 @@ class RentalCreator
   def self.create
     puts `clear`
     puts '\n\n\n Select a book from the following list by number'
-    Book.class_variable_get(:@@books).each_with_index { |book, index|
+    Book.class_variable_get(:@@books).each_with_index do |book, index|
       puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}"
-    }
+    end
 
     book_id = gets.chomp.to_i
 
@@ -133,5 +129,3 @@ class RentalCreator
     sleep 2
   end
 end
-
-# rubocop: enable Style
