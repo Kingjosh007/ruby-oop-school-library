@@ -13,10 +13,8 @@ def object_to_hash(obj)
       value = obj.instance_variable_get(var)
       if ['Book', 'Rental', 'Person', 'Student', 'Teacher', 'Classroom', 'Corrector'].include?(value.class.name)
         value = object_to_hash(value)
-      else
-        hash[key] = value
       end
-
+      hash[key] = value
       if obj.class.name == 'Student'
         hash['type'] = 'Student'
       elsif obj.class.name == 'Teacher'
