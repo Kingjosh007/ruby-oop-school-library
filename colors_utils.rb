@@ -82,4 +82,8 @@ class String
   def reverse_color
     "\e[7m#{self}\e[27m"
   end
+
+  def bum
+    to_s.bold.underline.magenta
+  end
 end

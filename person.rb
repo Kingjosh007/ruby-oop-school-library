@@ -1,9 +1,10 @@
-# rubocop: disable Style/OptionalBooleanParameter
+# rubocop: disable Style
 require 'date'
 require_relative 'corrector'
 require_relative 'rental'
 
 class Person
+  @@people = []
   attr_reader :id, :corrector
   attr_accessor :name, :age, :rentals
 
@@ -31,10 +32,15 @@ class Person
     @rentals << book_to_add unless @rentals.include?(book_to_add)
   end
 
+  def display
+    puts 'This is a person'
+  end
+
   private
 
   def of_age?
     @age >= 18
   end
 end
-# rubocop: enable Style/OptionalBooleanParameter
+
+# rubocop: enable Style
