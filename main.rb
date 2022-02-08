@@ -26,7 +26,7 @@ class App
 
     #Rentals
     rentals_path = Rental.class_variable_get(:@@rentals_filename)
-    binding.pry
+    # binding.pry
     Rental.set_rentals(read_data(rentals_path).map { |hash| hash_to_object(hash, 'Rental') })
 
 
