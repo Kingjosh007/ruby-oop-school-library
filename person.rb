@@ -7,7 +7,7 @@ require_relative 'data_related'
 class Person
   @@people_filename = 'people.json'
   @@people = []
-  attr_reader :corrector
+  attr_reader :corrector, :parent_permission
   attr_accessor :id, :name, :age, :rentals, :people
 
   def initialize(age, name = 'Unknown', parent_permission = true, rentals = [])

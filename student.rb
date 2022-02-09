@@ -1,6 +1,7 @@
 # rubocop: disable Layout/LineLength
 # rubocop: disable Style
 require_relative 'person'
+require_relative 'classroom'
 require_relative 'colors_utils'
 
 class Student < Person
